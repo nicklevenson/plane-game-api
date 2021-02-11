@@ -5,6 +5,7 @@ class ScoresController < ApplicationController
   end
   def create
     Score.create(score_params)
+    render json: {message: "success"}
   end
 
   private 
