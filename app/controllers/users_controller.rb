@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def create
     user = User.find_or_create_by(user_params)
-    scores = user.scores.collect{|s|"#{s.created_at.strftime('%b %e, %H:%M %p')}: #{s.score}"}.reverse
+    scores = user.scores.collect{|s|s.score}.reverse
     if user.save
       render json: {username: user.username, id: user.id, scores: scores}
     else
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    scores = user.scores.collect{|s|"#{s.created_at.strftime('%b %e, %H:%M %p')}: #{s.score}"}.reverse
+    scores = user.scores.collect{|s|s.score}.reverse
     render json: {username: user.username, id: user.id, scores: scores}
   end
 
