@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    scores = user.scores.collect{|s|s.score}.reverse
+    scores = user.scores.collect{|s|"#{s.created_at.strftime('%b %e, %l:%M %p')}: #{s.score}"}.reverse
     render json: {username: user.username, id: user.id, scores: scores}
   end
 
