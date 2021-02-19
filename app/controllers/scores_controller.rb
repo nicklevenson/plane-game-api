@@ -7,6 +7,10 @@ class ScoresController < ApplicationController
   def create
     Score.create(score_params)
     render json: {message: "success"}
+    # if score_params[:score] > Score.high_scores[-1]
+      # Score.high_scores[-1].destroy
+      # Score.create(score_params)
+    #end
   end
 
   private 
